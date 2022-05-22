@@ -1,3 +1,4 @@
+$ conda activate trial
 channels:
   - conda-forge
 dependencies:
