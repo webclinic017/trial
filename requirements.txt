@@ -8,8 +8,7 @@ gunicorn
 yfinance
 backtrader
 datetime
-matplotlib
-matplotlib.pyplot
+matplotlib=3.2.2
 date
 rsi
 goldencrossover
