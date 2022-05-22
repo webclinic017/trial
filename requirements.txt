@@ -9,5 +9,4 @@ yfinance
 backtrader
 datetime
 matplotlib==3.2.2
-warnings
 base64
