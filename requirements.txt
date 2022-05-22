@@ -5,7 +5,6 @@ urllib3
 bs4
 plotly
 gunicorn
-re
 yfinance
 backtrader
 datetime
