@@ -9,7 +9,6 @@ yfinance
 backtrader
 datetime
 matplotlib==3.2.2
-date
 rsi
 goldencrossover
 pandas_datareader
