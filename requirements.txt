@@ -10,3 +10,4 @@ plotly
 gunicorn
 datetime
 matplotlib
+pyplot
