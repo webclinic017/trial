@@ -9,9 +9,5 @@ yfinance
 backtrader
 datetime
 matplotlib==3.2.2
-rsi
-goldencrossover
-pandas_datareader
 warnings
 base64
-msilib.schema
