@@ -1,3 +1,3 @@
 import streamlit as st
-pip install -r requirements.txt
+import backtrader as bt
 st.write('hi')
