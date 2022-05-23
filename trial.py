@@ -85,7 +85,7 @@ def volatility():
         lines = ('vixopen', 'vixhigh', 'vixlow', 'vixclose',)
 
         params = (
-            ('dtformat', '%Y/%m/%d'),#'dtformat', '%Y-%m-%d'),
+            ('dtformat', '%d/%m/%Y'),#'dtformat', '%Y-%m-%d'),
             ('date', 0),
             ('spyopen', 1),
             ('spyhigh', 2),
@@ -135,7 +135,8 @@ def volatility():
     df3.to_csv('trial.csv', index=False)
     print(result)
     print(df3)
-
+    st.dataframe(result)
+    st.dataframe(df3)
     csv_file = os.path.dirname(os.path.realpath(__file__)) + "/trial2.csv"
     vix_csv_file = os.path.dirname(os.path.realpath(__file__)) + "/trial.csv"
 
