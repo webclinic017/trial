@@ -5,6 +5,7 @@ import pandas as pd
 import pandas_datareader as pdr
 import matplotlib.pyplot as plt
 import matplotlib
+from urllib.request import urlopen, Request
 from rsi import RSIStrategy
 st.set_option('deprecation.showPyplotGlobalUse', False)
 def get_fundamentals():
