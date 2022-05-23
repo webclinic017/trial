@@ -6,6 +6,7 @@ import pandas_datareader as pdr
 import matplotlib.pyplot as plt
 import matplotlib
 from urllib.request import urlopen, Request
+from bs4 import BeautifulSoup as bs
 from rsi import RSIStrategy
 st.set_option('deprecation.showPyplotGlobalUse', False)
 def get_fundamentals():
