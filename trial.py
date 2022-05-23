@@ -4,7 +4,7 @@ import yfinance as yf
 import pandas as pd
 import pandas_datareader as pdr
 import matplotlib.pyplot as plt
-import matplotlib
+import matplotlib==3.3.2
 import numpy as np
 from urllib.request import urlopen, Request
 from bs4 import BeautifulSoup as bs
