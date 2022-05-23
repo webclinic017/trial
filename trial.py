@@ -149,6 +149,33 @@ For stocks, fundamental analysis uses revenues, earnings, future growth, return 
         st.write('Financial statements are the medium by which a company discloses information concerning its financial performance. Followers of fundamental analysis use quantitative information gleaned from financial statements to make investment decisions. The three most important financial statements are income statements, balance sheets, and cash flow statements.')
         st.write('')
         st.write('''**Check the fundamentals of any stock by entering the ticker in the sidebar on the next page.**\n''')
+    elif s_fundament=='Check fundamentals':
+        symbol=st.sidebar.text_input("Ticker", value='AAPL', max_chars=10)
+        pd.set_option('display.max_colwidth', 25)
+        st.subheader(f"{symbol}'s Fundamentals ")
+        # Set up scraper
+        url = ("https://finviz.com/quote.ashx?t=" + symbol.lower())
+        req = Request(url=url, headers={'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:20.0) Gecko/20100101 Firefox/20.0'})
+        webpage = urlopen(req)
+        html = bs(webpage, "html.parser")
+        fundament=get_fundamentals()
+        inside=get_insider()
+        news=get_news()
+        st.write(fundament)
+        st.write('Several important indicators which could be used like marketcap, P/E, PEG, Debt/Eq, ROI etc have been indicated within the dataframe above. These can be used to find entry and exit positions and see if the company is fundamentally sound.')
+        st.write('_______________________________________________________________________________________________')
+        st.subheader("\n\nRecent trades made by company's officials")
+        st.write(inside)
+        st.write('**When Insiders Buy, Should Investors Join Them?**\n \n')
+        st.write('''This question doesn't have any right answers but one could sure speculate based on this information.\n
+Tips for beating the market tend to come and go quickly, but one has held up extremely well: if executives, directors, or others with inside knowledge of a public company are buying or selling shares, investors should consider doing the same thing. Research shows that insider trading activity is a valuable barometer of broad shifts in market and sector sentiment.
+
+However, before chasing each insider move, outsiders need to consider the factors that dictate the timing of trades and the factors that conceal the motivations and also that information is made public after a delay of the transaction made.''')
+        st.write('_______________________________________________________________________________________________')
+        st.subheader(f'Recent news on {symbol} stock')
+        st.write(news)
+        st.write('')
+        st.write("\nStocks correlate the performance with the current market conditions and business news. They also predict the performance of the stock market and advise on buying and selling of stocks, mutual funds, and other securities.")
 
 st.write('hi')
 df = pdr.DataReader('AAPL', 'yahoo', start='2014-01-01', end='2017-01-01')
