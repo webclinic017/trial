@@ -42,10 +42,6 @@ dashboard = st.sidebar.selectbox('', ('Home', 'Fundamental Analysis', 'Technical
 st.title(dashboard)
 st.write('___')
 if dashboard=='Home':
-    file_ = open("C:/Users/Utki/Desktop/code/stock/Picture1.png", "rb")
-    contents = file_.read()
-    data_url = base64.b64encode(contents).decode("utf-8")
-    file_.close()
     st.header('Welcome to Stockify')
     title_alignment2='''
     <style>
