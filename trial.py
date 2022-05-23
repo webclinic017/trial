@@ -6,10 +6,16 @@ import pandas_datareader as pdr
 import matplotlib.pyplot as plt
 import matplotlib
 import numpy as np
+import warnings
 from urllib.request import urlopen, Request
 from bs4 import BeautifulSoup as bs
 from rsi import RSIStrategy
 from datetime import date
+def fxn():
+    warnings.warn("deprecated", DeprecationWarning)
+with warnings.catch_warnings():
+    warnings.simplefilter("ignore")
+    fxn()
 st.set_option('deprecation.showPyplotGlobalUse', False)
 today=date.today()
 def backtestrsi():
