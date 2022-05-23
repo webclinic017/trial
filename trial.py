@@ -126,7 +126,7 @@ def volatility():
     st.write(results)
     df3.to_csv(r'https://github.com/Utkarshhh20/trial/blob/main/trial.csv')
     results.to_csv(r'https://github.com/Utkarshhh20/trial/blob/main/trial2.csv')
-    results = pd.read_csv('trial2.csv')
+    #results = pd.read_csv('trial2.csv')
     # If you know the name of the column skip this
     # Delete first
     #result = result.drop([first_column], axis=1)
