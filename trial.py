@@ -10,6 +10,286 @@ from urllib.request import urlopen, Request
 from bs4 import BeautifulSoup as bs
 from rsi import RSIStrategy
 st.set_option('deprecation.showPyplotGlobalUse', False)
+def backtestrsi():
+    global strategy
+    ticker=st.sidebar.text_input("Stock ticker", value="AAPL")
+    start=st.sidebar.text_input("Start date", value="2018-01-31")
+    end=st.sidebar.text_input("End date", value=today)
+    cash=st.sidebar.text_input("Starting cash", value=10000)
+    cash=int(cash)
+    cerebro=bt.Cerebro()
+    cerebro.broker.set_cash(cash)
+    start_value=cash
+    data = bt.feeds.PandasData(dataname=yf.download(ticker, start, end))
+    start=start.split("-")
+    end=end.split("-")
+    for i in range(len(start)):
+        start[i]=int(start[i])
+    for j in range(len(end)):
+        end[j]=int(end[j])
+    year=end[0]-start[0]
+    month=end[1]-start[1]
+    day=end[2]-start[2]
+    totalyear=year+(month/12)+(day/365)
+    matplotlib.use('Agg')
+    cerebro.adddata(data)
+
+    cerebro.addstrategy(RSIStrategy)
+
+    print('Starting Portfolio Value: %.2f' % cerebro.broker.getvalue())
+
+    cerebro.run()
+
+    print('Final Portfolio Value: %.2f' % cerebro.broker.getvalue())
+    
+    final_value=cerebro.broker.getvalue()
+    returns=(final_value-start_value)*100/start_value
+    annual_return=returns/totalyear
+    returns=round(returns, 2)
+    annual_return=round(annual_return,2)
+    returns=str(returns)
+    annual_return=str(annual_return)
+    figure = cerebro.plot()[0][0]
+    st.pyplot(figure)
+    st.write('')
+    st.subheader(f"{ticker}'s total returns are {returns}% with a {annual_return}% APY")
+    strategy=''
+
+def volatility():
+    global strategy
+    import backtrader as bt
+    import os
+    from VIXStrategy import VIXStrategy
+    import yfinance as yf
+    import pandas as pd
+    global ticker
+    ticker=st.sidebar.text_input("Stock ticker", value="AAPL")
+    start=st.sidebar.text_input("Start date", value="2018-01-31")
+    end=st.sidebar.text_input("End date", value=today)
+    cash=st.sidebar.text_input("Starting cash", value=10000)
+    cash=int(cash)
+    cerebro = bt.Cerebro()
+    cerebro.broker.setcash(cash)
+    start_value=cash
+    class SPYVIXData(bt.feeds.GenericCSVData):
+        lines = ('vixopen', 'vixhigh', 'vixlow', 'vixclose',)
+
+        params = (
+            ('dtformat', '%Y-%m-%d'),#'dtformat', '%Y-%m-%d'),
+            ('date', 0),
+            ('spyopen', 1),
+            ('spyhigh', 2),
+            ('spylow', 3),
+            ('spyclose', 4),
+            ('spyadjclose', 5),
+            ('spyvolume', 6),
+            ('vixopen', 7),
+            ('vixhigh', 8),
+            ('vixlow', 9),
+            ('vixclose', 10)
+        )
+
+    class VIXData(bt.feeds.GenericCSVData):
+            params = (
+            ('dtformat', '%Y-%m-%d'),
+            ('date', 0),
+            ('vixopen', 1),
+            ('vixhigh', 2),
+            ('vixlow', 3),
+            ('vixclose', 4),
+            ('volume', -1),
+            ('openinterest', -1)
+        )
+    df = yf.download(tickers=ticker, start=start, end=end, rounding= False)
+    ticker=ticker
+    df=df.reset_index() 
+    df2 = yf.download(tickers='^VIX', start=start, end=end, rounding= False)
+    df2.rename(columns = {'Open':'Vix Open', 'High':'Vix High', 'Low':'Vix Low', 'Close':'Vix Close'}, inplace = True)
+    df2=df2.drop("Volume", axis=1)
+    df2=df2.drop("Adj Close", axis=1)
+    df2=df2.reset_index()
+    df3=df2
+    df3.to_csv(r'C:\Users\Utki\Desktop\code\stock\trial.csv')
+    df2=df2.drop("Date", axis=1)
+    result=pd.concat([df, df2], axis=1, join='inner')
+    result.to_csv(r'C:\Users\Utki\Desktop\code\stock\trial2.csv')
+    result = pd.read_csv('trial2.csv')
+    # If you know the name of the column skip this
+    first_column = result.columns[0]
+    # Delete first
+    result = result.drop([first_column], axis=1)
+    result.to_csv('trial2.csv', index=False)
+    # If you know the name of the column skip this
+    first_column = df3.columns[0]
+    # Delete first
+    df3.to_csv('trial.csv', index=False)
+    print(result)
+    print(df3)
+
+    csv_file = os.path.dirname(os.path.realpath(__file__)) + "/trial2.csv"
+    vix_csv_file = os.path.dirname(os.path.realpath(__file__)) + "/trial.csv"
+
+    spyVixDataFeed = SPYVIXData(dataname=csv_file)
+    vixDataFeed = VIXData(dataname=vix_csv_file)
+    start=start.split("-")
+    end=end.split("-")
+    for i in range(len(start)):
+        start[i]=int(start[i])
+    for j in range(len(end)):
+        end[j]=int(end[j])
+    year=end[0]-start[0]
+    month=end[1]-start[1]
+    day=end[2]-start[2]
+    totalyear=year+(month/12)+(day/365)
+    matplotlib.use('Agg')
+    cerebro.adddata(spyVixDataFeed)
+    cerebro.adddata(vixDataFeed)
+
+    cerebro.addstrategy(VIXStrategy)
+
+    cerebro.run()
+    print('Starting Portfolio Value: %.2f' % cerebro.broker.getvalue())
+    print('Final Portfolio Value: %.2f' % cerebro.broker.getvalue())
+
+    final_value=cerebro.broker.getvalue()
+    returns=(final_value-start_value)*100/start_value
+    annual_return=returns/totalyear
+    returns=round(returns, 2)
+    annual_return=round(annual_return,2)
+    returns=str(returns)
+    annual_return=str(annual_return)
+    figure = cerebro.plot(volume=False)[0][0]
+    st.pyplot(figure)
+    st.subheader(f"{ticker}'s total returns are {returns}% with a {annual_return}% APY")
+    strategy=''
+
+def backtestgolden():
+    global strategy
+    ticker=st.sidebar.text_input("Stock ticker", value="AAPL")
+    start=st.sidebar.text_input("Start date", value="2018-01-31")
+    end=st.sidebar.text_input("End date", value=today)
+    cash=st.sidebar.text_input("Starting cash", value=10000)
+    cash=int(cash)
+    cerebro=bt.Cerebro()
+    cerebro.broker.set_cash(cash)
+    start_value=cash
+    data = bt.feeds.PandasData(dataname=yf.download(ticker, start, end))
+    start=start.split("-")
+    end=end.split("-")
+    for i in range(len(start)):
+        start[i]=int(start[i])
+    for j in range(len(end)):
+        end[j]=int(end[j])
+    year=end[0]-start[0]
+    month=end[1]-start[1]
+    day=end[2]-start[2]
+    totalyear=year+(month/12)+(day/365)
+    matplotlib.use('Agg')
+    cerebro.adddata(data)
+
+    cerebro.addstrategy(goldencrossover)
+
+    print('Starting Portfolio Value: %.2f' % cerebro.broker.getvalue())
+
+    cerebro.run()
+
+    print('Final Portfolio Value: %.2f' % cerebro.broker.getvalue())
+
+    final_value=cerebro.broker.getvalue()
+    returns=(final_value-start_value)*100/start_value
+    annual_return=returns/totalyear
+    returns=round(returns, 2)
+    annual_return=round(annual_return,2)
+    returns=str(returns)
+    annual_return=str(annual_return)
+    figure = cerebro.plot()[0][0]
+    st.pyplot(figure)
+    st.subheader(f"{ticker}'s total returns are {returns}% with a {annual_return}% APY")
+    strategy=''
+
+def backtestbollinger():
+    global strategy
+    import numpy as np
+    import pandas as pd
+    import pandas_datareader as pdr
+    import matplotlib.pyplot as plt
+    symbol=st.sidebar.text_input("Stock ticker", value="AAPL")
+    start=st.sidebar.text_input("Start date", value="2018-01-31")
+    end=st.sidebar.text_input("End date", value=today)
+    cash=st.sidebar.text_input("Starting cash", value=10000)
+    cash=int(cash)
+    def get_bollinger_bands(prices, rate=20):
+        sma=prices.rolling(rate).mean()
+        std = prices.rolling(rate).std()
+        bollinger_up = sma + std * 2 # Calculate top band
+        bollinger_down = sma - std * 2 # Calculate bottom band
+        return bollinger_up, bollinger_down, sma
+    df = pdr.DataReader(symbol, 'yahoo', start=start, end=end)
+    start=start.split("-")
+    end=end.split("-")
+    for i in range(3):
+        start[i]=int(start[i])
+        end[i]=int(end[i])
+    totalyear=(end[0]-start[0])+((end[1]-start[1])/12)+((end[2]-start[2])/365)
+    df.index = np.arange(df.shape[0])
+    closing_prices = df['Close']
+    money=cash
+    investpercent=0.9
+    bollinger_up, bollinger_down, sma = get_bollinger_bands(closing_prices)
+    matplotlib.use('Agg')
+    fig=plt.title(symbol + ' Bollinger Bands')
+    fig=plt.xlabel('Days')
+    fig=plt.ylabel('Closing Prices')
+    fig=plt.plot(sma, label='SMA', c='y', linewidth=1)
+    fig=plt.plot(closing_prices, label='Closing Prices')
+    fig=plt.plot(bollinger_up, label='Bollinger Up', c='g', linewidth=1)
+    fig=plt.plot(bollinger_down, label='Bollinger Down', c='r', linewidth=1)
+    sell=[]
+    sellday=[]
+    buy=[]
+    buyday=[]
+    close=df['Close']
+    position=1
+    for i in range(len(close)):
+        if position==-1 and i==(len(close)-1):
+            print('selling', df['Close'][i], bollinger_up[i])
+            sell.append(df['Close'][i])
+            sellday.append(i)
+            position=1
+        elif df['Close'][i]<=bollinger_down[i] and position==1:
+            print('buying', df['Close'][i], bollinger_down[i])
+            buy.append(df['Close'][i])
+            buyday.append(i)
+            position=-1
+        elif df['Close'][i]>=bollinger_up[i] and position==-1:
+            print('selling', df['Close'][i], bollinger_up[i])
+            sell.append(df['Close'][i])
+            sellday.append(i)
+            position=1
+    print(sell, buy)
+    trades=len(buy)
+    for i in range(trades):
+        if cash==money:
+            profit=((sell[i]-buy[i])/buy[i])*investpercent*cash
+            cash=cash+profit
+        else:
+            profit=((sell[i]-buy[i])/buy[i])*investpercent*cash
+            cash=cash+profit
+    returns=(cash-money)*100/money
+    annual_return=returns/totalyear
+    returns=round(returns, 2)
+    annual_return=round(annual_return,2)
+    returns=str(returns)
+    annual_return=str(annual_return)
+    for i in range(len(sellday)):
+        fig=plt.plot(sellday[i], sell[i], marker="v", markersize=7, markeredgecolor="red", markerfacecolor="red")
+        fig=plt.plot(buyday[i], buy[i], marker="^", markersize=7, markeredgecolor="green", markerfacecolor="green")
+    fig=plt.savefig(fname='hi')
+    plt.legend()
+    plt.show()
+    st.pyplot(fig)
+    st.subheader(f"{symbol}'s total returns are {returns}% with a {annual_return}% APY")
+    strategy=''
 def get_fundamentals():
     try:
         # Find fundamentals table
