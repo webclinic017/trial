@@ -127,7 +127,7 @@ def volatility():
     # If you know the name of the column skip this
     first_column = result.columns[0]
     # Delete first
-    result = result.drop([first_column], axis=1)
+    #result = result.drop([first_column], axis=1)
     result.to_csv('trial2.csv', index=False)
     # If you know the name of the column skip this
     first_column = df3.columns[0]
