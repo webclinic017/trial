@@ -9,4 +9,4 @@ bs4
 plotly
 gunicorn
 datetime
-matplotlib
+matplotlib==3.2.2
