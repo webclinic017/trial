@@ -120,14 +120,13 @@ def volatility():
     df2=df2.drop("Adj Close", axis=1)
     df2=df2.reset_index()
     df3=df2
-    df3.to_csv(r'https://github.com/Utkarshhh20/trial/blob/main/trial.csv')
     df2=df2.drop("Date", axis=1)
     result=pd.concat([df, df2], axis=1, join='inner')
-    st.write(result)
     results=result
+    st.write(results)
+    df3.to_csv(r'https://github.com/Utkarshhh20/trial/blob/main/trial.csv')
     results.to_csv(r'https://github.com/Utkarshhh20/trial/blob/main/trial2.csv')
     results = pd.read_csv('trial2.csv')
-    st.write(results)
     # If you know the name of the column skip this
     # Delete first
     #result = result.drop([first_column], axis=1)
@@ -135,12 +134,7 @@ def volatility():
     first_column = df3.columns[0]
     # Delete first
     df3.to_csv('trial.csv', index=False)
-    print(results)
-    print(df3)
-    st.dataframe(results)
-    st.dataframe(df3)
-    csv_file=result
-    #csv_file = os.path.dirname(os.path.realpath(__file__)) + "/trial2.csv"
+    csv_file = os.path.dirname(os.path.realpath(__file__)) + "/trial2.csv"
     vix_csv_file = os.path.dirname(os.path.realpath(__file__)) + "/trial.csv"
 
     spyVixDataFeed = SPYVIXData(dataname=csv_file)
