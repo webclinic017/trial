@@ -134,6 +134,7 @@ def volatility():
     first_column = df3.columns[0]
     # Delete first
     df3.to_csv('trial.csv', index=False)
+    st.write(df3)
     csv_file = os.path.dirname(os.path.realpath(__file__)) + "/trial2.csv"
     vix_csv_file = os.path.dirname(os.path.realpath(__file__)) + "/trial.csv"
 
