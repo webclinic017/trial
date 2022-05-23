@@ -111,8 +111,8 @@ def volatility():
             ('volume', -1),
             ('openinterest', -1)
         )
-    df = yf.download(tickers=ticker, start=start, end=end, rounding= False)
     ticker=ticker
+    df = yf.download(tickers=ticker, start=start, end=end, rounding= False)
     df=df.reset_index() 
     df2 = yf.download(tickers='^VIX', start=start, end=end, rounding= False)
     df2.rename(columns = {'Open':'Vix Open', 'High':'Vix High', 'Low':'Vix Low', 'Close':'Vix Close'}, inplace = True)
@@ -123,7 +123,7 @@ def volatility():
     df3.to_csv(r'https://github.com/Utkarshhh20/trial/blob/main/trial.csv')
     df2=df2.drop("Date", axis=1)
     result=pd.concat([df, df2], axis=1, join='inner')
-    result.to_csv(r'https://raw.githubusercontent.com/Utkarshhh20/trial/main/trial2.csv')
+    result.to_csv(r'https://github.com/Utkarshhh20/trial/blob/main/trial2.csv')
     result = pd.read_csv('trial2.csv')
     # If you know the name of the column skip this
     first_column = result.columns[0]
@@ -490,14 +490,3 @@ if dashboard=='Backtesting':
             backtestgolden()
     while strategy=='Bollinger Bands':
             backtestbollinger()
-st.write('hi')
-df = pdr.DataReader('AAPL', 'yahoo', start='2014-01-01', end='2017-01-01')
-st.dataframe(df)
-x=df['Close']
-matplotlib.use('Agg')
-fig=plt.title('AAPL' + ' Bollinger Bands')
-fig=plt.xlabel('Days')
-fig=plt.ylabel('Closing Prices')
-fig=plt.plot(x, label='Closing Prices')
-fig=plt.savefig(fname='hi')
-st.pyplot(fig)
