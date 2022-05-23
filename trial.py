@@ -139,7 +139,8 @@ def volatility():
     print(df3)
     st.dataframe(results)
     st.dataframe(df3)
-    csv_file = os.path.dirname(os.path.realpath(__file__)) + "/trial2.csv"
+    csv_file=result
+    #csv_file = os.path.dirname(os.path.realpath(__file__)) + "/trial2.csv"
     vix_csv_file = os.path.dirname(os.path.realpath(__file__)) + "/trial.csv"
 
     spyVixDataFeed = SPYVIXData(dataname=csv_file)
