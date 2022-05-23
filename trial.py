@@ -119,7 +119,7 @@ def volatility():
     df2=df2.drop("Adj Close", axis=1)
     df2=df2.reset_index()
     df3=df2
-    df3.to_csv(r'C:\Users\Utki\Desktop\code\stock\trial.csv')
+    df3.to_csv(r'https://github.com/Utkarshhh20/trial/blob/main/trial.csv')
     df2=df2.drop("Date", axis=1)
     result=pd.concat([df, df2], axis=1, join='inner')
     result.to_csv(r'C:\Users\Utki\Desktop\code\stock\trial2.csv')
