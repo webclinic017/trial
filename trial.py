@@ -179,7 +179,25 @@ However, before chasing each insider move, outsiders need to consider the factor
         st.write(news)
         st.write('')
         st.write("\nStocks correlate the performance with the current market conditions and business news. They also predict the performance of the stock market and advise on buying and selling of stocks, mutual funds, and other securities.")
-
+if dashboard=='Backtesting':
+    strategy = st.sidebar.selectbox("Which Strategy?", ('Intro', 'RSI', 'Volatility', 'Golden Crossover', 'Bollinger Bands'), 0, key='strategy')
+    st.header(strategy)
+    if strategy=='Intro':
+        st.subheader('What is backtesting?')
+        st.write('''• Backtesting assesses the viability of a trading strategy or pricing model by discovering how it would have played out retrospectively using historical data.\n
+• The underlying theory is that any strategy that worked well in the past is likely to work well in the future, and conversely, any strategy that performed poorly in the past is likely to perform poorly in the future.\n
+• When testing an idea on historical data, it is beneficial to reserve a time period of historical data for testing purposes. If it is successful, testing it on alternate time periods or out-of-sample data can help confirm its potential viability.''')
+        st.subheader('What is the need for backtesting?')
+        st.write('Backtesting is one of the most important aspects of developing a trading system. If created and interpreted properly, it can help traders optimize and improve their strategies, find any technical or theoretical flaws, as well as gain confidence in their strategy before applying it to the real world markets.')
+        st.subheader('Please choose one of our strategies on the sidebar to backtest')
+    while strategy=='RSI':
+            backtestrsi()
+    while strategy=='Volatility':
+        volatility()
+    while strategy=='Golden Crossover':
+            backtestgolden()
+    while strategy=='Bollinger Bands':
+            backtestbollinger()
 st.write('hi')
 df = pdr.DataReader('AAPL', 'yahoo', start='2014-01-01', end='2017-01-01')
 st.dataframe(df)
