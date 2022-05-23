@@ -123,9 +123,9 @@ def volatility():
     df2=df2.drop("Date", axis=1)
     result=pd.concat([df, df2], axis=1, join='inner')
     results=result
-    st.write(results)
     df3.to_csv(r'https://github.com/Utkarshhh20/trial/blob/main/trial.csv')
     results.to_csv(r'https://github.com/Utkarshhh20/trial/blob/main/trial2.csv')
+    st.write(results)
     #results = pd.read_csv('trial2.csv')
     # If you know the name of the column skip this
     # Delete first
