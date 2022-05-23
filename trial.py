@@ -7,6 +7,7 @@ import matplotlib.pyplot as plt
 import matplotlib
 import numpy as np
 import warnings
+from matplotlib import warnings
 from urllib.request import urlopen, Request
 from bs4 import BeautifulSoup as bs
 from rsi import RSIStrategy
