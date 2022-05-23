@@ -9,7 +9,9 @@ import numpy as np
 from urllib.request import urlopen, Request
 from bs4 import BeautifulSoup as bs
 from rsi import RSIStrategy
+from datetime import date
 st.set_option('deprecation.showPyplotGlobalUse', False)
+today=date.today()
 def backtestrsi():
     global strategy
     ticker=st.sidebar.text_input("Stock ticker", value="AAPL")
