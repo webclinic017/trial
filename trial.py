@@ -75,7 +75,7 @@ def volatility():
     import pandas as pd
     global ticker
     ticker=st.sidebar.text_input("Stock ticker", value="AAPL")
-    start=st.sidebar.text_input("Start date", value="2018-01-31")
+    start=st.sidebar.text_input("Start date", value="2017-01-31")
     end=st.sidebar.text_input("End date", value=today)
     cash=st.sidebar.text_input("Starting cash", value=10000)
     cash=int(cash)
