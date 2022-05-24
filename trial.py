@@ -36,6 +36,7 @@ def screener():
     stock.sharpe()
     plot=qs.plots.snapshot(stock, title='Facebook Performance')
     st.pyplot(plot)
+    st.write(plot)
 def backtestrsi():
     global strategy
     ticker=st.sidebar.text_input("Stock ticker", value="AAPL")
