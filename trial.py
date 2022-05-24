@@ -34,8 +34,8 @@ def screener():
     st.write(stats)
 # or using extend_pandas() :)
     stock.sharpe()
-    pic=stock.plot_snapshot(title='Google Performance', savefig='stockplot.png')
-    st.image(pic)
+    pic=stock.plot_snapshot(savefig='stockplot.png')
+    st.image('stockplot.png')
 def backtestrsi():
     global strategy
     ticker=st.sidebar.text_input("Stock ticker", value="AAPL")
