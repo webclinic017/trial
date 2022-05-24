@@ -7,6 +7,7 @@ import matplotlib.pyplot as plt
 import matplotlib
 import numpy as np
 import warnings
+import quantstats as qs
 from matplotlib import warnings
 from matplotlib.dates import (HOURS_PER_DAY, MIN_PER_HOUR, SEC_PER_MIN)
 from urllib.request import urlopen, Request
@@ -21,6 +22,8 @@ with warnings.catch_warnings():
     fxn()
 st.set_option('deprecation.showPyplotGlobalUse', False)
 today=date.today()
+def screener():
+    
 def backtestrsi():
     global strategy
     ticker=st.sidebar.text_input("Stock ticker", value="AAPL")
