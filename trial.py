@@ -8,6 +8,7 @@ import matplotlib
 import numpy as np
 import warnings
 import quantstats as qs
+import streamlit.components.v1 as components
 from matplotlib import warnings
 from matplotlib.dates import (HOURS_PER_DAY, MIN_PER_HOUR, SEC_PER_MIN)
 from urllib.request import urlopen, Request
