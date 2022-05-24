@@ -420,6 +420,7 @@ if dashboard=='Home':
     #st.markdown(f'<img src="data:image/gif;base64,{data_url}" alt="cat gif">', unsafe_allow_html=True,)
     st.markdown(title_alignment2, unsafe_allow_html=True)
     st.markdown(image1, unsafe_allow_html=True)
+    st.subheader('What is stockify?')
     st.write('Stockify is a web application developed on python using the streamlit library which aims to provide you with the tools necessary to make trading and investing much simpler. Using this web app you can enhance and optimize your investing skills and take advantage of every opportunity presented to you by the market\n ')
     st.subheader('What can I do on stockify?')
     st.write('''You can use this web app to do:\n
