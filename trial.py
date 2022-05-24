@@ -39,7 +39,7 @@ def screener():
     #reports=qs.plots.snapshot(stock, title='Facebook Performance', savefig='reports.png')
     #st.image('reports.png')
     x=qs.reports.full(stock, "QQQ")
-    st.write(x)
+    st.experminetal_show(x)
 def backtestrsi():
     global strategy
     ticker=st.sidebar.text_input("Stock ticker", value="AAPL")
