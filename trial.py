@@ -23,7 +23,7 @@ with warnings.catch_warnings():
 st.set_option('deprecation.showPyplotGlobalUse', False)
 today=date.today()
 def screener():
-    
+    qs.extend_pandas()
 def backtestrsi():
     global strategy
     ticker=st.sidebar.text_input("Stock ticker", value="AAPL")
