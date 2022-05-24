@@ -36,8 +36,8 @@ def screener():
     stock.sharpe()
     pic=stock.plot_snapshot(savefig='stockplot.png')
     st.image('stockplot.png')
-    reports=qs.plots.snapshot(stock, title='Facebook Performance', savefig='reports.png')
-    st.image('reports.png')
+    #reports=qs.plots.snapshot(stock, title='Facebook Performance', savefig='reports.png')
+    #st.image('reports.png')
 def backtestrsi():
     global strategy
     ticker=st.sidebar.text_input("Stock ticker", value="AAPL")
