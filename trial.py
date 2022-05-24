@@ -420,12 +420,12 @@ if dashboard=='Home':
     #st.markdown(f'<img src="data:image/gif;base64,{data_url}" alt="cat gif">', unsafe_allow_html=True,)
     st.markdown(title_alignment2, unsafe_allow_html=True)
     st.markdown(image1, unsafe_allow_html=True)
-    st.subheader('What is stockify?')
-    st.write('Stockify is a web application developed on python using the streamlit library which aims to provide you with the tools necessary to make trading and investing much simpler.\n ')
-    st.write('''You can use this web app to do\n
-1. Fundamental Analysis\n
-2. Technical Analysis\n
-3. Backtesting''')
+    st.write('Stockify is a web application developed on python using the streamlit library which aims to provide you with the tools necessary to make trading and investing much simpler. Using this web app you can enhance and optimize your investing skills and take advantage of every opportunity presented to you by the market\n ')
+    st.subheader('What can I do on stockify?')
+    st.write('''You can use this web app to do:\n
+1. Fundamental Analysis - Learn and check the fundamentals of various companies and make inferences based on the data provided.\n
+2. Technical Analysis - Read price chart movements and see important indicators to predict the price and make entry and exit positions accordingly.\n
+3. Backtesting - Backtesting answer's your " What if ? " question as to what if you had used xyz strategy on a stock over a period of time. Would you make profits or would it be a loss? Find out using our pre defined strategies in backtesting module.''')
 if dashboard=='Fundamental Analysis':
     s_fundament = st.sidebar.selectbox('What would you like to do?', ('Learn', 'Check fundamentals'), 0)
     if s_fundament=='Learn':
@@ -439,6 +439,28 @@ if dashboard=='Fundamental Analysis':
 For stocks, fundamental analysis uses revenues, earnings, future growth, return on equity, profit margins, and other data to determine a company's underlying value and potential for future growth. All of this data is available in a company's financial statements.\n''')
         st.subheader('Financial Statements: Quantitative Fundamentals to Consider')
         st.write('Financial statements are the medium by which a company discloses information concerning its financial performance. Followers of fundamental analysis use quantitative information gleaned from financial statements to make investment decisions. The three most important financial statements are income statements, balance sheets, and cash flow statements.')
+        st.write('')
+        st.subheader('Financial Ratios')
+        st.write("""• A Financial ratio is a useful financial metric of a company. On its own merit, the 
+ratio conveys very little information. \n
+• It is best to study the ratio's recent trend or compare it with the company's peers 
+to develop an opinion. \n
+• Financial ratios can be categorized into 'Profitability', 'Leverage', 'Valuation', and 
+'Operating' ratios. Each of these categories gives the analyst a certain view on 
+the company's business.\n""")
+        st.write('')
+        st.subheader('Few examples are:')
+        st.write('''**1. Price-Earnings Ratio (P/E):** The P/E ratio is an important part of how 
+to read financial statements for stocks. It is the ratio for valuing a company 
+and measures its current share price relative to its per-share earnings.\n
+**2. Return on Equity (ROE):** is a precious ratio. It indicates how much return 
+the shareholders are making over their initial investment in the company. 
+A high ROE and high debt is not a great sign.\n
+**3.Return on capital employed (ROCE):** The Return on Capital 
+employed indicates the company's profitability, taking into consideration 
+the overall capital it employs. Overall capital includes both equity and debt 
+(both long term and short term)
+''')
         st.write('')
         st.write('''**Check the fundamentals of any stock by entering the ticker in the sidebar on the next page.**\n''')
     elif s_fundament=='Check fundamentals':
