@@ -39,8 +39,9 @@ def screener():
         'GOOG': 0.2 
     }
     fmaga = portfolio = qs.utils.make_index(tickers)
-    qs.reports.html(fmaga, "qqq", output="output/fmaga_vs_qqq.html")
-
+    report=qs.reports.html(fmaga, "qqq", output="output/fmaga_vs_qqq.html")
+    st.write(fmaga)
+    st.write(report)
 def backtestrsi():
     global strategy
     ticker=st.sidebar.text_input("Stock ticker", value="AAPL")
@@ -409,7 +410,7 @@ title_alignment2="""
     </body>
     """
 st.sidebar.markdown(title_alignment2, unsafe_allow_html=True)
-dashboard = st.sidebar.selectbox('', ('Home', 'Fundamental Analysis', 'Technical Indicators', 'Backtesting', 'Pattern Stocks'), 0)
+dashboard = st.sidebar.selectbox('', ('Home', 'Screener', 'Fundamental Analysis', 'Technical Indicators', 'Backtesting', 'Pattern Stocks'), 0)
 st.title(dashboard)
 st.write('___')
 if dashboard=='Home':
@@ -511,6 +512,8 @@ However, before chasing each insider move, outsiders need to consider the factor
         st.write(news)
         st.write('')
         st.write("\nStocks correlate the performance with the current market conditions and business news. They also predict the performance of the stock market and advise on buying and selling of stocks, mutual funds, and other securities.")
+if dashboard=='Screener':
+    screener()
 if dashboard=='Backtesting':
     strategy = st.sidebar.selectbox("Which Strategy?", ('Intro', 'RSI', 'Volatility', 'Golden Crossover', 'Bollinger Bands'), 0, key='strategy')
     st.header(strategy)
