@@ -42,6 +42,8 @@ def screener():
     report=qs.reports.html(fmaga, "qqq", output="output/fmaga_vs_qqq.html")
     st.write(fmaga)
     st.write(report)
+    stock.plot_monthly_heatmap(savefig='heatmap.png')
+    st.image('heatmap.png')
 def backtestrsi():
     global strategy
     ticker=st.sidebar.text_input("Stock ticker", value="AAPL")
