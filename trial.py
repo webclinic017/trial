@@ -25,12 +25,12 @@ today=date.today()
 def screener():
     qs.extend_pandas()
     stock = qs.utils.download_returns('GLD', period="10y")
-    qs.reports.html(stock, title='PTL Investments', output='gld.html')
-    qs.reports.html(stock, "SPY", title="GLD vs. SPY", output='gld_vs_spy.html')
+    qs.reports.html(stock, title='PTL Investments', output='output/gld.html')
+    qs.reports.html(stock, "SPY", title="GLD vs. SPY", output='output/gld_vs_spy.html')
     stock = qs.utils.download_returns('QQQ', period="10y")
-    qs.reports.html(stock, "SPY", title="QQQ vs. SPY", output='qqq_ovs_spy.html')
+    qs.reports.html(stock, "SPY", title="QQQ vs. SPY", output='output/qqq_ovs_spy.html')
     stock = qs.utils.download_returns('TQQQ', period="10y")
-    qs.reports.html(stock, "QQQ", title="TQQQ vs. QQQ", output='tqqq_vs_qqq.html')
+    qs.reports.html(stock, "QQQ", title="TQQQ vs. QQQ", output='output/tqqq_vs_qqq.html')
     tickers = {
         'FB': 0.2,
         'AAPL': 0.2, 
@@ -44,7 +44,7 @@ def screener():
     st.write(report)
     stock.plot_monthly_heatmap(savefig='heatmap.png')
     st.image('heatmap.png')
-    HtmlFile = open('gld.html', 'r', encoding='utf-8')
+    HtmlFile = open('output/gld.html', 'r', encoding='utf-8')
     source_code = HtmlFile.read() 
     print(source_code)
     components.html(source_code)
