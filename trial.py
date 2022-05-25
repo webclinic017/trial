@@ -16,6 +16,7 @@ from bs4 import BeautifulSoup as bs
 from rsi import RSIStrategy
 from goldencrossover import goldencrossover
 from datetime import date
+%matplotlib inline
 def fxn():
     warnings.warn("deprecated", DeprecationWarning)
 with warnings.catch_warnings():
