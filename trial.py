@@ -83,7 +83,7 @@ def backtestrsi():
     day=end[2]-start[2]
     totalyear=year+(month/12)+(day/365)
     interactive_backends = ['Qt5Agg', 'MacOSX', 'TkAgg', 'ipympl', 'GTK3Agg', 'GTK3Cairo', 'nbAgg', 'Qt5Cairo','TkCairo']
-    matplotlib.use('agg')
+    matplotlib.use('Agg')
     cerebro.adddata(data)
 
     cerebro.addstrategy(RSIStrategy)
@@ -101,7 +101,7 @@ def backtestrsi():
     annual_return=round(annual_return,2)
     returns=str(returns)
     annual_return=str(annual_return)
-    figure = cerebro.plot()[0][0]
+    figure = cerebro.plot(iplot=False)[0][0]
     st.pyplot(figure)
     st.write('')
     st.subheader(f"{ticker}'s total returns are {returns}% with a {annual_return}% APY")
