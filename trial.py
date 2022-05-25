@@ -83,11 +83,7 @@ def backtestrsi():
     day=end[2]-start[2]
     totalyear=year+(month/12)+(day/365)
     interactive_backends = ['Qt5Agg', 'MacOSX', 'TkAgg', 'ipympl', 'GTK3Agg', 'GTK3Cairo', 'nbAgg', 'Qt5Cairo','TkCairo']
-    for i in interactive_backends:
-        try:
-            matplotlib.use(i)
-        except:
-            pass
+    matplotlib.use('ipympl')
     cerebro.adddata(data)
 
     cerebro.addstrategy(RSIStrategy)
