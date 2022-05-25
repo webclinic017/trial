@@ -10,4 +10,5 @@ plotly
 gunicorn
 datetime
 quantstats
+pypiwin32
 matplotlib==3.2.2
