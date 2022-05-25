@@ -86,6 +86,8 @@ def backtestrsi():
     for i in interactive_backends:
         try:
             matplotlib.use(i)
+        except:
+            pass
     cerebro.adddata(data)
 
     cerebro.addstrategy(RSIStrategy)
