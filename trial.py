@@ -101,7 +101,7 @@ def backtestrsi():
     annual_return=round(annual_return,2)
     returns=str(returns)
     annual_return=str(annual_return)
-    figure = cerebro.plot(iplot=False)[0][0]
+    figure = cerebro.plot(iplot=False)#[0][0]
     st.pyplot(figure)
     st.write('')
     st.subheader(f"{ticker}'s total returns are {returns}% with a {annual_return}% APY")
