@@ -9,7 +9,6 @@ import numpy as np
 import warnings
 import quantstats as qs
 import streamlit.components.v1 as components
-from matplotlib.backends.backend_agg import RendererAgg
 from matplotlib import warnings
 from matplotlib.dates import (HOURS_PER_DAY, MIN_PER_HOUR, SEC_PER_MIN)
 from urllib.request import urlopen, Request
@@ -17,7 +16,6 @@ from bs4 import BeautifulSoup as bs
 from rsi import RSIStrategy
 from goldencrossover import goldencrossover
 from datetime import date
-_lock = RendererAgg.lock
 #def fxn():
 #    warnings.warn("deprecated", DeprecationWarning)
 #with warnings.catch_warnings():
@@ -132,8 +130,7 @@ def backtestrsi():
     annual_return=round(annual_return,2)
     returns=str(returns)
     annual_return=str(annual_return)
-    with lock:
-        figure = cerebro.plot()[0][0]
+    figure = cerebro.plot()[0][0]
     st.pyplot(figure)
     st.write('')
     st.subheader(f"{ticker}'s total returns are {returns}% with a {annual_return}% APY")
