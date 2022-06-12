@@ -503,7 +503,7 @@ if dashboard=='Home':
     <img src="https://cdn.myportfolio.com/fd40c2a8-1f6f-47d7-8997-48ba5415a69c/3da6f1b3-6f54-41c3-8643-01aae0b48ef3_rw_1200.png?h=39a23c885e98a256c9f1f14906ee2e68" alt="House" class='stocks'></img>
     </body>'''
     #st.markdown(f'<img src="data:image/gif;base64,{data_url}" alt="cat gif">', unsafe_allow_html=True,)
-    st.markdown(image1, unsafe_allow_html=True)
+    st.markdown(logo, unsafe_allow_html=True)
     st.markdown(logo, unsafe_allow_html=True)
     st.subheader('What is stockify?')
     st.write('Stockify is a web application developed on python using the streamlit library which aims to provide you with the tools necessary to make trading and investing much simpler. Using this web app you can enhance and optimize your investing skills and take advantage of every opportunity presented to you by the market\n ')
