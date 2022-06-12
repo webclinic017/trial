@@ -7,6 +7,7 @@ import matplotlib.pyplot as plt
 import matplotlib
 import numpy as np
 import warnings
+import hydralit_components as hc
 import quantstats as qs
 import streamlit.components.v1 as components
 from matplotlib import warnings
