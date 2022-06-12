@@ -429,6 +429,50 @@ def get_insider():
 
     except Exception as e:
         return e
+
+trial=st.columns([4,1])
+menu_data = [
+    {'icon': "far fa-copy", 'label':"Fundamental analysis   "},
+    #{'icon': "fa-solid fa-radar",'label':"Dropdown1   ", 'submenu':[{'id':' subid11','icon': "fa fa-paperclip", 'label':"Sub-item 1"},{'id':'subid12','icon': "💀", 'label':"Sub-item 2"},{'id':'subid13','icon': "fa fa-database", 'label':"Sub-item 3"}]},
+    {'icon': "far fa-chart-bar", 'label':"Technical Indicators   "},#no tooltip message
+    #{'id':' Crazy return value 💀','icon': "💀", 'label':"Calendar   "},
+    #{'icon': "fas fa-tachometer-alt", 'label':"Dashboard   ",'ttip':"I'm the Dashboard tooltip!"}, #can add a tooltip message
+    {'icon': "fas fa-tachometer-alt", 'label':"Backtesting   "},
+    #{'icon': "fa-solid fa-radar",'label':"Dropdown2", 'submenu':[{'label':"Sub-item 1", 'icon': "fa fa-meh"},{'label':"Sub-item 2"},{'icon':'🙉','label':"Sub-item 3",}]},
+]
+
+over_theme = {'txc_inactive': '#FFFFFF'}
+over_theme = {'txc_inactive': "#D3D3D3",'menu_background':'#6521ed','txc_active':'white','option_active':'#6521e'}
+with trial[0]:
+    dashboard = hc.nav_bar(
+    menu_definition=menu_data,
+    override_theme=over_theme,
+    home_name='Tradelyne',
+    #login_name='Logout',
+    hide_streamlit_markers=True, #will show the st hamburger as well as the navbar now!
+    sticky_nav=True, #at the top or not
+    sticky_mode='sticky', #jumpy or not-jumpy, but sticky or pinned
+    use_animation=True,
+    key='NavBar'
+    )
+menu_data = [
+    {'icon': "bi bi-telephone", 'label':"Contact us   "},
+    #{'icon': "fa-solid fa-radar",'label':"Dropdown1   ", 'submenu':[{'id':' subid11','icon': "fa fa-paperclip", 'label':"Sub-item 1"},{'id':'subid12','icon': "💀", 'label':"Sub-item 2"},{'id':'subid13','icon': "fa fa-database", 'label':"Sub-item 3"}]},
+]
+over_theme = {'txc_inactive': '#FFFFFF'}
+over_theme = {'txc_inactive': "#D3D3D3",'menu_background':'#6521ed','txc_active':'white','option_active':'#6521e'}
+with trial[1]:
+    dashboard2 = hc.nav_bar(
+    menu_definition=menu_data,
+    override_theme=over_theme,
+    #home_name='Stocks',
+    #login_name='Logout',
+    hide_streamlit_markers=True, #will show the st hamburger as well as the navbar now!
+    sticky_nav=True, #at the top or not
+    sticky_mode='sticky', #jumpy or not-jumpy, but sticky or pinned
+    use_animation=True,
+    key='NavBar2',
+    )
 title="""
     <style>
     .stockify {
