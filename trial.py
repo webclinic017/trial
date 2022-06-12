@@ -473,7 +473,7 @@ over_theme = {'txc_inactive': "#D3D3D3",'menu_background':'#6521ed','txc_active'
 #    sticky_mode='sticky', #jumpy or not-jumpy, but sticky or pinned
 #    use_animation=True,
 #    key='NavBar2',
-    )
+#    )
 title="""
     <style>
     .stockify {
