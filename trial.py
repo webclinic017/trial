@@ -20,6 +20,7 @@ from datetime import date
 #    warnings.warn("deprecated", DeprecationWarning)
 #with warnings.catch_warnings():
 #    warnings.simplefilter("ignore")
+st.set_page_config(layout='wide')
 #    fxn()
 st.set_option('deprecation.showPyplotGlobalUse', False)
 today=date.today()
