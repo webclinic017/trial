@@ -431,7 +431,7 @@ def get_insider():
     except Exception as e:
         return e
 
-trial=st.columns([4,1])
+trial=st.columns(1)
 menu_data = [
     {'icon': "far fa-copy", 'label':"Fundamental analysis   "},
     #{'icon': "fa-solid fa-radar",'label':"Dropdown1   ", 'submenu':[{'id':' subid11','icon': "fa fa-paperclip", 'label':"Sub-item 1"},{'id':'subid12','icon': "💀", 'label':"Sub-item 2"},{'id':'subid13','icon': "fa fa-database", 'label':"Sub-item 3"}]},
@@ -462,17 +462,17 @@ menu_data = [
 ]
 over_theme = {'txc_inactive': '#FFFFFF'}
 over_theme = {'txc_inactive': "#D3D3D3",'menu_background':'#6521ed','txc_active':'white','option_active':'#6521e'}
-with trial[1]:
-    dashboard2 = hc.nav_bar(
-    menu_definition=menu_data,
-    override_theme=over_theme,
+#with trial[1]:
+#    dashboard2 = hc.nav_bar(
+#    menu_definition=menu_data,
+#    override_theme=over_theme,
     #home_name='Stocks',
     #login_name='Logout',
-    hide_streamlit_markers=True, #will show the st hamburger as well as the navbar now!
-    sticky_nav=True, #at the top or not
-    sticky_mode='sticky', #jumpy or not-jumpy, but sticky or pinned
-    use_animation=True,
-    key='NavBar2',
+#    hide_streamlit_markers=True, #will show the st hamburger as well as the navbar now!
+#    sticky_nav=True, #at the top or not
+#    sticky_mode='sticky', #jumpy or not-jumpy, but sticky or pinned
+#    use_animation=True,
+#    key='NavBar2',
     )
 title="""
     <style>
