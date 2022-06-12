@@ -463,7 +463,20 @@ dashboard = st.sidebar.selectbox('', ('Home', 'Screener', 'Fundamental Analysis'
 st.title(dashboard)
 st.write('___')
 if dashboard=='Home':
-    st.header('Welcome to Stockify')
+    logo='''
+    <style>
+    .logo{
+        width: 750px;
+        margin-top:-670px;
+        margin-left: -100px;
+
+    }
+    </style>
+    <body>
+    <img src='https://cdn.myportfolio.com/fd40c2a8-1f6f-47d7-8997-48ba5415a69c/6c46ac13-6a18-427a-9baa-01ad3b53ac45_rw_600.png?h=21b14417887f0576feb32fcbfd191788' alt='logo' class='logo'></img> 
+    </body>
+    '''
+    #st.header('Welcome to Stockify')
     title_alignment2='''
     <style>
     .trial {
@@ -479,17 +492,19 @@ if dashboard=='Home':
     image1='''
     <style>
     .stocks {
-    width: 50px;
-    margin-top: -165px;
-    margin-left: 320px;
+    width: 700px;
+    float: right;
+    margin-top: 0px;
+    z-index: 1;
+    position: relative;
     }
     </style>
     <body>
-    <img src="https://img.icons8.com/external-xnimrodx-lineal-gradient-xnimrodx/344/external-stock-economy-xnimrodx-lineal-gradient-xnimrodx.png" alt="House" class='stocks'></img>
+    <img src="https://cdn.myportfolio.com/fd40c2a8-1f6f-47d7-8997-48ba5415a69c/3da6f1b3-6f54-41c3-8643-01aae0b48ef3_rw_1200.png?h=39a23c885e98a256c9f1f14906ee2e68" alt="House" class='stocks'></img>
     </body>'''
     #st.markdown(f'<img src="data:image/gif;base64,{data_url}" alt="cat gif">', unsafe_allow_html=True,)
-    st.markdown(title_alignment2, unsafe_allow_html=True)
     st.markdown(image1, unsafe_allow_html=True)
+    st.markdown(logo, unsafe_allow_html=True)
     st.subheader('What is stockify?')
     st.write('Stockify is a web application developed on python using the streamlit library which aims to provide you with the tools necessary to make trading and investing much simpler. Using this web app you can enhance and optimize your investing skills and take advantage of every opportunity presented to you by the market\n ')
     st.subheader('What can I do on stockify?')
